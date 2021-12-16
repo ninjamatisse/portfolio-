@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheet, JavaScript  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <title>To-Do List</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Kobe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="card.html">Business Card</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="todo.html">To Do List</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li> -->
+                </ul>
+                <!-- <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
+            </div>
+        </div>
+    </nav>
+
+    <div class='container'>
+        <!-- to wrap the form in a container (bootstrap) -->
+        <h1> TO-DO LIST</h1>
+
+        <button id='task-button' class='btn btn-success' style="margin-left: 11px"> New Task</button>
+
+        <!-- Form (like survey forms or registration forms) -->
+        <!-- Inside forms we will get user' s inputs -->
+        <!-- input can be a checkbox, menu bar, image... many different things -->
+        <!-- type can be different thing, text, number, date (calendar), calendar with time -->
+
+        <form style="display: none;" class="container">
+            <!-- onsubmit="submitForm() -->
+            <!-- calling the function submitForm -->
+            <!-- <form style="display: none;" onsubmit="alert('hi')"></form> on submit, it will show hi -->
+            <!-- display text: none = hide things, now we are hiding the form -->
+            <!-- for ... linked to id task in the next line -->
+            <div class="form-group">
+                <label for="task">Task</label>
+                <input class="form-control" type="text" id="task" />
+            </div>
+            <div class="form-group">
+                <label for="progress">Progress</label>
+                <input class="form-control" type="number" id="progress" />
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input class="form-control" type="text" id="description" />
+            </div>
+
+            <input class="btn btn-primary mt-3" type="submit" value="Submit" />
+            <!-- can add style="margin: 10px" after input to do in-line css -->
+
+            <!-- by default input type submit is a button, or we can also do (see below), <button>: we can put images inside -->
+
+            <!-- <button type="submit">Submit ;) ;)</button> -->
+
+        </form>
+
+        <!-- undordered list = bullet points, no numbers -->
+        <ol>
+            <!-- List -->
+            <!-- <li>
+            <div>
+                <h2>Task Name 1</h2>
+                <p>Task Description</p>
+                <p>Task Progress</p>
+            </div>
+        </li>
+
+        <li>
+            <div>
+                <h2>Task Name 2</h2>
+                <p>Task Description</p>
+                <p>Task Progress</p>
+            </div>
+        </li>
+    </ol> -->
+    </div>
+
+
+    <script> // javascript section 
+        // comment in Javascript, comment in HTML is different form Javascript 
+        // alert("hi") // a function like console log in JavaScript
+        // Javascript querying (searching) through the DOM tree
+        // Editing the DOM tree 
+
+        // Events -> Scheduled 
+        // 1. newBtn.onclick = //fuction name, it will do something
+        // 2. newBtn.addEventListener("click event name, // function") // we need to tell it what it should listen to, function 
+        // 3. domElement.
+        // newBtn.innerText = "Close Task";
+
+
+        let newBtn = document.querySelector("#task-button");
+        newBtn.addEventListener("click", toggleBtn);
+        //submit the form 
+        let form = document.querySelector('form'); //select the form, then hide the form when it's close task
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(event) { //submitform = event handlers, handle events with event handler which has default argument. 
+            // 1. validate 
+            event.preventDefault(); // prevent it from submitting the page which is the default 
+            let task = document.getElementById("task");
+            let progress = document.getElementById("progress");
+            let description = document.getElementById("description");
+
+            if (isValidate(task.value, progress.value, description.value)) {// returning the value only, not the DOM (without .value) return True validated / False not validate
+                // console.log(task.value, progress.value, description.value)
+                addToDo(task.value, progress.value, description.value); //call the function to add it to Add To Do
+                // 3. clear the form
+                task.value = ""; // clear out the form
+                progress.value = "";
+                description.value = "";
+
+            } else {
+                alert("check your form");
+
+            }
+
+
+
+            // 2. add to list of todos
+        }
+
+        // Add To Do
+        function addToDo(task, progress, description) {//passing in to ToDo
+            let wireframe = `
+                <li>
+                    <div>
+                <h2>${task}</h2> 
+                <p>${description}</p>
+                <p>${progress}%</p>
+                    </div>
+                </li>
+            `;//use ${} to pass the variable in task to the string h2. use `` like f string in Python. Wireframe is going to be a string, need to make up multi-line and look nice
+            let orderedList = document.querySelector("ol");
+
+            orderedList.innerHTML += wireframe;
+        }
+
+
+        function isValidate(task, progress, description) { // checking if the value is correct 
+            if (task == "" || progress == "" || description == "") {
+                return false;
+            }
+            if (+progress < 0 | +progress > 100) {
+                return false;
+            }
+            return true;
+        }
+
+
+        function toggleBtn() { // creating a function, toggle on & off, get the button, get the innertext. 
+            // toggle form 
+            let newBtn = document.querySelector("#task-button"); //then set it as a variable using let
+            let text = newBtn.innerText;
+
+            if (text == "Close Task") {
+                newBtn.innerText = "New Tasks";
+                newBtn.className = "btw btn-success";
+                form.style.display = "none";
+            } else {
+                newBtn.innerText = "Close Task";
+                newBtn.className = "btw btn-secondary";
+                form.style.display = "block"; // or "", same. empty by default means block 
+            }
+
+        }
+
+
+            // debugger;
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

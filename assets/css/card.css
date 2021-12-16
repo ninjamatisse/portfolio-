@@ -1,0 +1,83 @@
+.flip-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card {
+  width: 300px;
+  height: 500px;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  /* rgba, a = alpha aka opacity, the number after the () is to show the shadow, if it's all 0, then you won't be able to see it  */
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.flip-card-front {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(49, 63, 73);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  align-items: center;
+}
+/* .flip-card front,
+.flip-card-back{} for both classes  */
+
+.flip-card-back {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  transform: rotateY(180deg);
+  /* position: absolute = giving the element an absolute position to the parent element (flip-card innder), 
+  because every item is by default relative */
+}
+
+.flip-card:hover .flip-card-inner {
+  /* animation --> use transform */
+  transform: rotateY(180deg);
+}
+
+/* card on mobile */
+.flip-card:focus .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+#logo-front {
+  filter: invert(100%);
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+#logo-back {
+  width: 60%;
+  align-self: center;
+}
+
+#ted-lasso {
+  width: 60%;
+  border-radius: 50%;
+  align-self: center;
+}

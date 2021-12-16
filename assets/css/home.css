@@ -1,0 +1,70 @@
+body {
+  background-image: url(/assets/image/81866095-F95C-4645-887A-DD79EB29A4CB_1_105_c.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top 0% bottom -50%;
+  /* how to move the background relative to viewport */
+  background-attachment: fixed;
+}
+
+.image {
+  width: 80rem;
+  height: 300px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* .nav-link {
+  color: black;
+} */
+
+/* .social-media i {
+  color: grey;
+}
+
+.social-media a:hover i {
+  color: pink;
+} */
+
+h1 {
+  color: rgb(253, 185, 39);
+}
+
+.p {
+  color: rgb(85, 37, 130);
+}
+
+.home-page-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.home-page-footer ul {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* align-items: flex-end; */
+}
+
+.home-page-footer a {
+  color: rgb(253, 185, 39);
+}
+
+/* Full Screen Height when on smaller devices */
+@media screen and (max-width: 992px) {
+  body {
+    background-position: 30% 0%;
+    background-attachment: fixed;
+    background-size: auto 100vh;
+  }
+
+  .home-page-footer ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* height set to 0 otherwise background does not cover the ul */
+    height: 0;
+  }
+}

@@ -1,0 +1,104 @@
+h1 {
+  font-family: "Architects Daughter", cursive;
+  color: rgb(253, 185, 39);
+}
+
+body {
+  background-color: white;
+}
+
+/* HTML tag */
+section {
+  background-color: grey;
+}
+
+/*  class */
+.border {
+  margin-bottom: 2rem;
+}
+/* ID # = reference to id
+#image1 {
+  border: 60px solid skyblue;
+} */
+
+.image-container {
+  display: flex;
+  /* flex = give the container some flex power, telling all children elements to do 1 thing */
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  /* all the elements inside the flex box to justify center */
+  width: 100%;
+}
+
+.image-container img {
+  object-fit: cover;
+  object-position: 50%;
+  width: 100%;
+  height: 100%;
+  /* tell the image to be 100% of the <a> tag */
+}
+
+/* changing the size of the <a> tag */
+
+.image-container a {
+  width: 100px;
+  height: calc(100vh - 6rem);
+  margin: 0 2rem 2rem 2rem;
+  filter: grayscale(100%);
+  opacity: 80%;
+  overflow: hidden;
+}
+
+a:hover {
+  filter: grayscale(0%);
+  opacity: 100%;
+}
+
+img:hover {
+  transform: scale(2);
+  transition: all 1s ease-in-out;
+}
+
+.image-container a:hover,
+.image-container a:focus {
+  filter: grayscale(0);
+  opacity: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+  .image-container a {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: grayscale(100%);
+    opacity: 80%;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  .image-container a {
+    width: calc(100% / 3);
+    height: auto;
+    margin: 0 1rem 2rem;
+    filter: grayscale(100%);
+    opacity: 80%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+  .image-container a {
+    display: block;
+    margin: 0 2rem 2rem 2rem;
+    width: calc(100% / 9);
+    height: calc(100vh - 10rem);
+    filter: grayscale(100%);
+    opacity: 80%;
+    /* try without it, we want the scale to be contained inside anchor tag */
+    overflow: hidden;
+  }
+}

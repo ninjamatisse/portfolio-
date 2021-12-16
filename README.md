@@ -1,1 +1,1 @@
-Colonize Mars~!!!
+Kobe Bryant
